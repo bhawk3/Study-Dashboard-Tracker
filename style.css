@@ -1,3 +1,10 @@
-body {
-	background-color: blue;
+.not-started-card,
+.in-progress-card,
+.completed-card {
+	background-color: #101204; /*individual cards will be color #303134*/
+	height: 350px;
+}
+
+p {
+	color: #fff;
 }
