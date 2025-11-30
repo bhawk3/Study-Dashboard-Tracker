@@ -20,16 +20,19 @@
 				<div class="row d-flex justify-content-center g-2">
 					<div class="col-3 p-3 m-1 w-33 rounded-3 position-relative not-started-card">
 						<p>Not Started</p>
-
+						<br />
+						<p id="not-started-col"></p>
 						<button data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-outline-primary rounded-3 w-90 start-50 translate-middle-x text-center text-nowrap position-absolute bottom-0 mb-3 px-4" type="button">+ Create New Task</button>
 					</div>
 					<div class="col-3 p-3 m-1 w-33 rounded-3 position-relative in-progress-card">
 						<p>In Progress</p>
+						<p id="in-progress-col"></p>
 
 						<button data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-outline-primary rounded-3 w-90 start-50 translate-middle-x text-center text-nowrap position-absolute bottom-0 mb-3 px-4" type="button">+ Create New Task</button>
 					</div>
 					<div class="col-3 p-3 m-1 w-33 rounded-3 position-relative completed-card">
 						<p>Completed</p>
+						<p id="completed-col"></p>
 
 						<button data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-outline-primary rounded-3 w-90 start-50 translate-middle-x text-center text-nowrap position-absolute bottom-0 mb-3 px-4" type="button">+ Create New Task</button>
 					</div>
@@ -45,7 +48,7 @@
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<div class="modal-body">
-							<form>
+							<form id="modal-form">
 								<label for="title">Title:</label><br />
 								<input id="title" name="title" type="text" /><br />
 								<label for="date">Date:</label><br />
@@ -57,7 +60,8 @@
 									<option value="Completed">Completed</option></select
 								><br />
 								<label for="description">Description:</label><br />
-								<input id="description" name="description" type="text" />
+								<input id="description" name="description" type="text" /><br />
+								<button type="submit" class="modal-submit-btn btn btn-primary mt-2">Create</button>
 							</form>
 						</div>
 						<div class="modal-footer">
