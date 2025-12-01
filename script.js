@@ -17,13 +17,32 @@ const cardDescription = document.getElementById("description");
 //😊Create modal to add new cards
 
 //Take input from the form and make it a card.
-function makeDataCard(title, date, status, description) {
-	title = cardTitle.value;
-	date = cardDate.value;
-	status = cardStatus.value;
-	description = cardDescription.value;
+function makeDataCard() {
+	const notStartedArr = [];
+	const inProgressArr = [];
+	const completedArr = [];
+
+	const title = cardTitle.value;
+	const date = cardDate.value;
+	const status = cardStatus.value;
+	const description = cardDescription.value;
 
 	console.log(title, date, status, description);
+
+	switch (status) {
+		case "Not Started":
+			console.log("Not Started");
+			break;
+		case "In Progress":
+			console.log("In Progress");
+			break;
+
+		case "Completed":
+			console.log("Completed");
+			break;
+		default:
+			console.log("Please set a status");
+	}
 }
 
 //Create event listener for modal form being submitted
