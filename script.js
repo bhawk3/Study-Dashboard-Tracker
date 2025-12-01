@@ -29,16 +29,26 @@ function makeDataCard() {
 
 	console.log(title, date, status, description);
 
+	const info = `<h3>${title}</h3><br><p>${date}</p><br>
+    <p>${status}</p><br>
+    <p>${description}</p>`;
+
 	switch (status) {
 		case "Not Started":
 			console.log("Not Started");
+			notStartedCol.innerHTML += info;
+			notStartedArr.push(info);
 			break;
 		case "In Progress":
 			console.log("In Progress");
+			inProgressCol.innerHTML += info;
+			inProgressArr.push(info);
 			break;
 
 		case "Completed":
 			console.log("Completed");
+			completedCol.innerHTML += info;
+			completedArr.push(info);
 			break;
 		default:
 			console.log("Please set a status");
