@@ -7,4 +7,11 @@
 
 p {
 	color: #fff;
+	margin: 0px;
+}
+
+.infoCards {
+	color: #fff;
+	background-color: #303134;
+	padding: 10px;
 }

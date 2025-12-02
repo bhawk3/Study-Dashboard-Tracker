@@ -29,9 +29,9 @@ function makeDataCard() {
 
 	console.log(title, date, status, description);
 
-	const info = `<h3>${title}</h3><br><p>${date}</p><br>
-    <p>${status}</p><br>
-    <p>${description}</p>`;
+	const info = `<div class="infoCards"><h3>Title:${title}</h3><p>Date:${date}</p>
+    <p>Status: ${status}</p>
+    <p>Description: ${description}</p></div>`;
 
 	switch (status) {
 		case "Not Started":
