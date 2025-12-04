@@ -29,7 +29,7 @@ function makeDataCard() {
 
 	console.log(title, date, status, description);
 
-	const info = `<div class="infoCards"><h3>Title:${title}</h3><p>Date:${date}</p>
+	const info = `<div class="infoCards"><h3>Title:&nbsp; ${title}</h3><p>Date:&nbsp; ${date}</p>
     <p>Status: ${status}</p>
     <p>Description: ${description}</p></div>`;
 
