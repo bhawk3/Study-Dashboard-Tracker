@@ -36,17 +36,20 @@ function makeDataCard() {
 	switch (status) {
 		case "Not Started":
 			console.log("Not Started");
+			notStartedCard.style.height = "auto";
 			notStartedCol.innerHTML += info;
 			notStartedArr.push(info);
 			break;
 		case "In Progress":
 			console.log("In Progress");
+			inProgressCard.style.height = "auto";
 			inProgressCol.innerHTML += info;
 			inProgressArr.push(info);
 			break;
 
 		case "Completed":
 			console.log("Completed");
+			completedCard.style.height = "auto";
 			completedCol.innerHTML += info;
 			completedArr.push(info);
 			break;

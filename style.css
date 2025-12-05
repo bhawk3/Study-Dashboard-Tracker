@@ -2,7 +2,7 @@
 .in-progress-card,
 .completed-card {
 	background-color: #101204; /*individual cards will be color #303134*/
-	height: 350px;
+	min-height: 350px;
 }
 
 p {
@@ -15,4 +15,6 @@ p {
 	background-color: #303134;
 	padding: 10px;
 	border-radius: 5px;
+	margin: 10px;
+	display: block;
 }
