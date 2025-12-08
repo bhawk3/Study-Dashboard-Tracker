@@ -18,9 +18,10 @@ const cardDescription = document.getElementById("description");
 
 //Take input from the form and make it a card.
 function makeDataCard() {
-	const notStartedArr = [];
-	const inProgressArr = [];
-	const completedArr = [];
+	const userInput = [];
+	//const notStartedArr = [];
+	//const inProgressArr = [];
+	//const completedArr = [];
 
 	const title = cardTitle.value;
 	const date = cardDate.value;
@@ -29,29 +30,43 @@ function makeDataCard() {
 
 	console.log(title, date, status, description);
 
+	//The html is getting pushed into the arr but I only want the values.
+	//I also need to dynamically add an ID to select individual cards
+
+	/*
+    What if I add all cards into a single array then map over them. This way
+    I can calc IDs and then when you map over an array it returns a new array. 
+    This means I would have to map 3 times to get the columns
+    */
+
+	const userData = {
+		title: title,
+		date: date,
+		status: status,
+		desc: description,
+	};
+
 	const info = `<div class="infoCards"><button aria-label="delete" id="card-delete-btn" type="button">X</button><h3>Title:&nbsp; ${title}</h3><p>Date:&nbsp; ${date}</p>
     <p>Status: ${status}</p>
     <p>Description: ${description}</p></div>`;
 
 	switch (status) {
 		case "Not Started":
-			console.log("Not Started");
 			notStartedCard.style.height = "auto";
 			notStartedCol.innerHTML += info;
-			notStartedArr.push(info);
+			userInput.push(userData);
+			console.log(userInput); //Other cols wont display arr in console since there is no console.log
 			break;
 		case "In Progress":
-			console.log("In Progress");
 			inProgressCard.style.height = "auto";
 			inProgressCol.innerHTML += info;
-			inProgressArr.push(info);
+			userInput.push(userData);
 			break;
 
 		case "Completed":
-			console.log("Completed");
 			completedCard.style.height = "auto";
 			completedCol.innerHTML += info;
-			completedArr.push(info);
+			userInput.push(userData);
 			break;
 		default:
 			console.log("Please set a status");
