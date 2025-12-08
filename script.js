@@ -29,7 +29,7 @@ function makeDataCard() {
 
 	console.log(title, date, status, description);
 
-	const info = `<div class="infoCards"><h3>Title:&nbsp; ${title}</h3><p>Date:&nbsp; ${date}</p>
+	const info = `<div class="infoCards"><button aria-label="delete" id="card-delete-btn" type="button">X</button><h3>Title:&nbsp; ${title}</h3><p>Date:&nbsp; ${date}</p>
     <p>Status: ${status}</p>
     <p>Description: ${description}</p></div>`;
 
@@ -63,6 +63,13 @@ modalForm.addEventListener("submit", (event) => {
 	event.preventDefault();
 
 	makeDataCard();
+	modalForm.reset();
+});
+
+const deleteCardBtn = document.getElementById("card-delete-btn");
+deleteCardBtn.addEventListener("click", () => {
+	//remove from arr
+	//remove from column/clear DOM
 });
 
 //Determine which column the card should be added to. I think a switch statement could be helpful here

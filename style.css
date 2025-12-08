@@ -21,3 +21,7 @@ p {
 #not-started-col:last-child {
 	margin-bottom: 50px;
 }
+
+#card-delete-btn {
+	color: #fff;
+}
