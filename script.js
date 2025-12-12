@@ -16,12 +16,12 @@ const cardDescription = document.getElementById("description");
 
 //😊Create modal to add new cards
 
+const userInput = [];
+
 //Take input from the form and make it a card.
 function makeDataCard() {
-	const userInput = [];
-	//const notStartedArr = [];
-	//const inProgressArr = [];
-	//const completedArr = [];
+	//The html is getting pushed into the arr but I only want the values.
+	//I also need to dynamically add an ID to select individual cards
 
 	const title = cardTitle.value;
 	const date = cardDate.value;
@@ -30,16 +30,16 @@ function makeDataCard() {
 
 	console.log(title, date, status, description);
 
-	//The html is getting pushed into the arr but I only want the values.
-	//I also need to dynamically add an ID to select individual cards
-
 	/*
     What if I add all cards into a single array then map over them. This way
     I can calc IDs and then when you map over an array it returns a new array. 
     This means I would have to map 3 times to get the columns
     */
 
+	let itemId = userInput.length - 1;
+
 	const userData = {
+		id: itemId,
 		title: title,
 		date: date,
 		status: status,
@@ -71,6 +71,9 @@ function makeDataCard() {
 		default:
 			console.log("Please set a status");
 	}
+
+	console.log(userData);
+	console.log(userInput);
 }
 
 //Create event listener for modal form being submitted
