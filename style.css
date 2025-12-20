@@ -18,10 +18,10 @@ p {
 	margin: 10px;
 	display: block;
 }
-#not-started-col:last-child {
+.not-started-col:last-child {
 	margin-bottom: 50px;
 }
 
-#card-delete-btn {
+.card-delete-btn {
 	color: #fff;
 }

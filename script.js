@@ -13,67 +13,54 @@ const cardTitle = document.getElementById("title");
 const cardDate = document.getElementById("date");
 const cardStatus = document.getElementById("status");
 const cardDescription = document.getElementById("description");
-
+const rowWithColumnCards = document.getElementById("row-with-column-cards");
 //😊Create modal to add new cards
 
 const userInput = [];
+let itemId = 0;
 
 //Take input from the form and make it a card.
 function makeDataCard() {
-	//The html is getting pushed into the arr but I only want the values.
-	//I also need to dynamically add an ID to select individual cards
-
-	const title = cardTitle.value;
-	const date = cardDate.value;
-	const status = cardStatus.value;
-	const description = cardDescription.value;
-
-	console.log(title, date, status, description);
-
 	/*
     What if I add all cards into a single array then map over them. This way
     I can calc IDs and then when you map over an array it returns a new array. 
     This means I would have to map 3 times to get the columns
     */
 
-	let itemId = userInput.length - 1;
+	const title = cardTitle.value;
+	const date = cardDate.value;
+	const status = cardStatus.value;
+	const description = cardDescription.value;
 
 	const userData = {
-		id: itemId,
+		id: itemId++,
 		title: title,
 		date: date,
 		status: status,
 		desc: description,
 	};
 
-	const info = `<div class="infoCards"><button aria-label="delete" id="card-delete-btn" type="button">X</button><h3>Title:&nbsp; ${title}</h3><p>Date:&nbsp; ${date}</p>
-    <p>Status: ${status}</p>
-    <p>Description: ${description}</p></div>`;
+	userInput.push(userData);
+	renderBoard();
+}
 
-	switch (status) {
-		case "Not Started":
-			notStartedCard.style.height = "auto";
+function renderBoard() {
+	notStartedCol.innerHTML = "";
+	inProgressCol.innerHTML = "";
+	completedCol.innerHTML = "";
+
+	userInput.forEach((task) => {
+		const info = `<div class="infoCards" data-id="${task.id}"><button aria-label="delete" class="card-delete-btn" type="button">X</button><h3>Title:&nbsp; ${task.title}</h3><p>Date:&nbsp; ${task.date}</p>
+    					<p>Status: ${task.status}</p>
+    					<p>Description: ${task.desc}</p></div>`;
+		if (task.status === "Not Started") {
 			notStartedCol.innerHTML += info;
-			userInput.push(userData);
-			console.log(userInput); //Other cols wont display arr in console since there is no console.log
-			break;
-		case "In Progress":
-			inProgressCard.style.height = "auto";
+		} else if (task.status === "In Progress") {
 			inProgressCol.innerHTML += info;
-			userInput.push(userData);
-			break;
-
-		case "Completed":
-			completedCard.style.height = "auto";
+		} else if (task.status === "Completed") {
 			completedCol.innerHTML += info;
-			userInput.push(userData);
-			break;
-		default:
-			console.log("Please set a status");
-	}
-
-	console.log(userData);
-	console.log(userInput);
+		}
+	});
 }
 
 //Create event listener for modal form being submitted
@@ -84,10 +71,21 @@ modalForm.addEventListener("submit", (event) => {
 	modalForm.reset();
 });
 
-const deleteCardBtn = document.getElementById("card-delete-btn");
-deleteCardBtn.addEventListener("click", () => {
+rowWithColumnCards.addEventListener("click", (e) => {
 	//remove from arr
 	//remove from column/clear DOM
+	if (e.target.classList.contains("card-delete-btn")) {
+		const cardElement = e.target.closest(".infoCards");
+		const idToDelete = parseInt(cardElement.dataset.id);
+
+		const index = userInput.findIndex((item) => item.id === idToDelete);
+		if (index !== -1) {
+			userInput.splice(index, 1);
+			renderBoard();
+		}
+		cardElement.remove();
+		console.log("Delete");
+	}
 });
 
 //Determine which column the card should be added to. I think a switch statement could be helpful here
