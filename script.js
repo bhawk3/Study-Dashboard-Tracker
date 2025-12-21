@@ -50,7 +50,7 @@ function renderBoard() {
 	completedCol.innerHTML = "";
 
 	userInput.forEach((task) => {
-		const info = `<div class="infoCards" data-id="${task.id}"><button aria-label="delete" class="card-delete-btn" type="button">X</button><h3>Title:&nbsp; ${task.title}</h3><p>Date:&nbsp; ${task.date}</p>
+		const info = `<div class="infoCards dragElement" draggable="true" data-id="${task.id}"><button aria-label="delete" class="card-delete-btn" type="button">X</button><h3>Title:&nbsp; ${task.title}</h3><p>Date:&nbsp; ${task.date}</p>
     					<p>Status: ${task.status}</p>
     					<p>Description: ${task.desc}</p></div>`;
 		if (task.status === "Not Started") {
@@ -91,3 +91,39 @@ rowWithColumnCards.addEventListener("click", (e) => {
 //Determine which column the card should be added to. I think a switch statement could be helpful here
 
 //Create event listener for cards being dragged
+
+rowWithColumnCards.addEventListener("dragstart", (e) => {
+	if (e.target.classList.contains("infoCards")) {
+		//"saving" the ID of the card being dragged into browser's memory
+		e.dataTransfer.setData("text/plain", e.target.dataset.id);
+	}
+});
+
+const dragElement = document.querySelector(".dragElement");
+const dropZoneSet = Array.from(document.querySelectorAll(".dropZone"));
+
+dropZoneSet.forEach((dropzone) => {
+	//Have event listener for which dropzone the dragElement is over then append it to the back of it.
+	dropzone.addEventListener("dragover", (e) => {
+		e.preventDefault();
+	});
+
+	dropzone.addEventListener("drop", (e) => {
+		e.preventDefault();
+
+		//Get the ID we saved earlier
+		//Find the actual HTML element with that ID
+		const draggedCard = parseInt(e.dataTransfer.getData("text/plain"));
+
+		//Update the status in the userInput array
+		const task = userInput.find((t) => t.id === draggedCard);
+		if (task) {
+			if (dropzone.classList.contains("One")) task.status = "Not Started";
+			if (dropzone.classList.contains("Two")) task.status = "In Progress";
+			if (dropzone.classList.contains("Three")) task.status = "Completed";
+			renderBoard();
+		}
+
+		//console.log("Updated Data: ", userInput);
+	});
+});

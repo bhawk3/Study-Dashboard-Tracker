@@ -25,3 +25,21 @@ p {
 .card-delete-btn {
 	color: #fff;
 }
+.dropZone {
+	min-height: 300px;
+	transition: background-color 0.2s;
+}
+
+.dropZone:hover {
+	background-color: rgba(0, 0, 0, 0.05);
+}
+
+@media screen and (max-width: 768px) {
+	#row-with-column-cards {
+		flex-direction: column;
+		align-items: center;
+	}
+	#row-with-column-cards > div {
+		width: 85%;
+	}
+}
